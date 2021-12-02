@@ -1,0 +1,10 @@
+
+#include "/home/none/.Xresourses.d/dracula"
+!#include "/home/none/.Xresourses.d/rofi"
+
+#include "/home/none/.Xresourses.d/colors"
+
+!#include ".Xresources.d/fonts"
+!#include ".Xresources.d/rxvt-unicode"
+
+Xft.dpi: 96

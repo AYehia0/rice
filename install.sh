@@ -29,4 +29,18 @@ zip -rq dotsfiles_back \
     ~/.config/dunst \
     ~/.config/kitty \
     ~/.config/qutebrowser \
+    ~/.config/rofi \
+
+# copying 
+cp -r .config/bspwm \
+    .config/sxhkd \
+    .config/polybar \
+    .config/picom \
+    .config/nvim \
+    .config/ranger \
+    .config/dunst \
+    .config/kitty \
+    .config/qutebrowser \
+    .config/rofi \
+    ~/.config \
 
