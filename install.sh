@@ -1,5 +1,5 @@
 : ' 
-A simple script that backups the old dotfiles and installs the newer one : Bspwmonly.
+A simple script that backups the old dotfiles and installs the newer one : Bspwm only.
 
 The setup requirements :
 
@@ -16,6 +16,7 @@ The setup requirements :
     - dunst
     - flameshot
     - qutebrowser
+
 '
 
 # backup dots in .config
