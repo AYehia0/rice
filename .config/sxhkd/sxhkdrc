@@ -1,0 +1,102 @@
+# launch terminal
+super + x
+    kitty 
+
+# using the urxvt
+super + z
+    urxvt 
+
+# program launcher
+super + space
+    /home/none/.config/rofi/launcher.sh
+
+# focus the last node/desktop
+super + {grave,Tab}
+	bspc {node,desktop} -f last
+
+# open wifi menu
+super + i
+    /home/none/.bin/rofi-wifi-menu.sh
+
+# open powermenu
+super + p
+    /home/none/.bin/rofi-powermenu
+
+# launch software
+super + {b,e,t,o,m}
+    {brave ,nemo, telegram-desktop, lollypop, teams}
+
+# close and kill
+super + {_,shift + }q
+	bspc node -{c,k}
+
+# set the window state
+super + shift + {w,e}
+    bspc node --state {tiled,floating}
+
+# toggle fullscreen/non-fullscreen switch
+super + shift + f
+    bspc node -t "~"{fullscreen,tiled}
+
+# focus the node in the given direction
+super + {_,shift + }{h,j,k,l}
+    bspc node -{f,s} {west,south,north,east}
+
+# move forward/backword desktops
+super + shift + {a,s}
+    bspc desktop -f {prev,next}
+
+# focus or send to the given desktop
+super + {_,shift + }{1-8,0}
+    bspc {desktop -f,node -d} '^{1-8,7}'
+
+# expand/contract a window
+#super + control + {h,j,k,l}
+#  bspc node -z {left -20 0 || bspc node -z right -20 0, \
+#                bottom 0 20 || bspc node -z top 0 20,\
+#                top 0 -20 || bspc node -z bottom 0 -20,\
+#                right 20 0 || bspc node -z left 20 0}
+
+# expand a window by moving one of its side outward
+super + alt + {h,j,k,l}
+	bspc node -z {left -20 0,bottom 0 20,top 0 -20,right 20 0}
+
+# contract a window by moving one of its side inward
+super + alt + shift + {h,j,k,l}
+	bspc node -z {right -20 0,top 0 20,bottom 0 -20,left 20 0}
+
+# move a floating window
+super + {a,s,w,d}
+	bspc node -v {-20 0,0 20,0 -20,20 0}
+
+# full screenshot, selection area, full in 5 seconds
+Print + {_,shift}
+    flameshot {full -p, gui -p} /home/none/Pictures/Screenshots
+
+ quit/restart bspwm
+super + {F4, F5}
+	bspc {quit,wm -r}
+
+# reload configurations
+super + shift + r
+    pkill -usr1 -x sxhkd; notify-send 'sxhkd' 'configs reloaded'; sxhkd &;
+
+# increase/decrease volume by 5%
+XF86Audio{Raise,Lower}Volume
+   pactl set-sink-volume 0 {+5%,-5%}
+
+# toggle volume mute
+XF86AudioMute
+    pactl set-sink-mute 0 toggle
+
+# brightness keys
+XF86MonBrightness{Up,Down}
+	light -{A,U} 10
+
+# next, previous, play-pause toggle
+XF86Audio{Next,Prev,Play}
+    playerctl {next,previous,play-pause}
+
+# screen locking
+super + F1
+    betterlockscreen -l

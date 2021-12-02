@@ -1,0 +1,369 @@
+; ██████╗  ██████╗ ██╗  ██╗   ██╗██████╗  █████╗ ██████╗ 
+; ██╔══██╗██╔═══██╗██║  ╚██╗ ██╔╝██╔══██╗██╔══██╗██╔══██╗
+; ██████╔╝██║   ██║██║   ╚████╔╝ ██████╔╝███████║██████╔╝
+; ██╔═══╝ ██║   ██║██║    ╚██╔╝  ██╔══██╗██╔══██║██╔══██╗
+; ██║     ╚██████╔╝███████╗██║   ██████╔╝██║  ██║██║  ██║
+; ╚═╝      ╚═════╝ ╚══════╝╚═╝   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝
+                                    
+[colors]
+background = #aa30393d
+background-alt = #d1c4e9
+foreground = #e5e9f0
+foreground-alt = #282e3a
+primary = #ffb52a
+secondary = #e60053
+alert = #B48EAD
+
+cyan = #88C0D0
+aqua = #8FBCBB
+red = #BF616A
+yellow = #EBCB8B
+green = #A3BE8C
+orange = #D08770
+magenta = #BF616A
+white = #D8DEE9
+pink = #c394b4
+blue = #81a1c1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[bar/main]
+width = 100%
+height = 22
+radius = 0.0
+fixed-center = true
+wm-restack = bspwm
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 0
+padding-right = 0
+
+border-size = 5
+border-color = ${colors.background} 
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "Iosevka Nerd Font:style=Bold:size=11;3"
+font-1 = "Mochiy Pop One:pixelsize=12;3"
+
+modules-left = bspwm
+modules-center = windowtitle
+modules-right = battery backlight wifi memory volume date powermenu
+
+cursor-click = pointer
+cursor-scroll = pointer
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/bspwm]
+type = internal/bspwm
+
+ws-icon-0 = "1;1"
+ws-icon-1 = "2;2"
+ws-icon-2 = "3;3"
+ws-icon-3 = "4;4"
+ws-icon-4 = "5;5"
+ws-icon-5 = "6;6"
+ws-icon-6 = "7;7"
+ws-icon-7 = "8;8"
+ws-icon-8 = "9;9"
+
+label-focused = %icon%
+label-focused-background = ${colors.pink}
+label-focused-underline = ${colors.primary}
+label-focused-foreground = ${colors.foreground-alt}
+label-focused-padding = 2
+
+label-occupied = %icon%
+label-occupied-background = ${colors.background}
+label-occupied-foreground = #e5e9f0
+label-occupied-padding = 2
+
+label-urgent = %icon%
+label-urgent-background = ${colors.red}
+label-urgent-foreground = #e5e9f0
+label-urgent-padding = 2
+
+label-empty = %icon% 
+label-empty-background = ${colors.background}
+label-empty-foreground = #e5e9f0
+label-empty-padding = 2
+
+label-separator = 
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/backlight]
+type = internal/backlight
+card = amdgpu_bl0
+format = <ramp> <label>
+label = %percentage%%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+ramp-foreground = ${colors.red}
+
+[module/brightness]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/brightness/
+card = ${system.graphics_card}
+
+enable-scroll = true
+
+format = <ramp> <label>
+format-background = ${color.background}
+format-padding = 1
+
+label = %percentage%%
+
+ramp-0 = 
+ramp-1 = 
+ramp-2 = 
+ramp-3 = 
+ramp-4 = 
+ramp-5 = 
+ramp-6 = 
+ramp-7 = 
+ramp-8 = 
+ramp-9 = 
+ramp-font = 2
+ramp-foreground = ${color.red}
+
+[module/wifi]
+type = internal/network
+interface = wlp4s0
+unknown-as-up = true
+interval = 3.0
+tail = true
+
+format-connected = "<ramp-signal><label-connected>"
+
+format-connected-foreground = ${colors.cyan}
+
+label-connected = %essid%   %downspeed:1:10%   %upspeed:1:10%
+#label-connected = %essid%
+label-connected-background = ${colors.background}
+label-connected-foreground = ${colors.cyan}
+
+
+format-disconnected-prefix  = "睊 "
+format-disconnected-prefix-foreground = ${colors.cyan}
+format-disconnected-prefix-background = ${colors.background}
+format-disconnected-foreground = ${colors.cyan}
+format-disconnected-background = ${colors.background}
+
+format-disconnected = NO WIFI
+
+ramp-signal-0 = " "
+ramp-signal-foreground = ${colors.cyan}
+ramp-signal-background = ${colors.background}
+ramp-signal-font = 3
+format-padding = 2
+
+[module/network]
+type = internal/network
+interface = wlp4s0
+interval = 1.0
+format-connected = <label-connected>
+label-connected = " %downspeed%  %upspeed%"
+label-connected-foreground = ${colors.background}
+label-connected-underline = ${colors.background}
+label-connected-overline = ${colors.background}
+label-connected-background = ${colors.green}
+label-connected-padding = 2
+label-disconnected = disconnected
+
+[module/cpu]
+type = internal/cpu
+interval = 2.5
+
+format = <label> 
+
+label = 󰣖 %percentage%%
+
+format-background = ${colors.mine}
+format-foreground = #989cff
+
+[module/battery]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+full-at = 99
+
+poll-interval = 2
+time-format = %H:%M
+
+format-charging = <animation-charging> <label-charging>
+format-charging-prefix = 
+
+format-discharging = <ramp-capacity> <label-discharging>
+
+format-full = <label-full>
+format-full-prefix = " "
+format-full-prefix-font = 2
+format-full-prefix-foreground = ${colors.red}
+
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-font = 2
+ramp-capacity-foreground = ${colors.cyan}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-font = 2
+animation-charging-foreground = ${colors.green}
+animation-charging-framerate = 750
+
+[module/windowtitle]
+type = internal/xwindow
+format = <label>
+format-background = ${colors.cyan}
+format-foreground = ${colors.background}
+format-padding = 4
+label = " %title%"
+label-maxlen = 80
+label-empty = " "
+label-empty-font = 3
+label-separator = " "
+label-empty-foreground = ${colors.background}
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/volume]
+type = internal/pulseaudio
+
+format-volume = "<ramp-volume> <label-volume>"
+ramp-volume-0 =
+ramp-volume-0-font = 2
+ramp-volume-1 =墳
+ramp-volume-1-font = 2
+ramp-volume-2 =墳
+ramp-volume-2-font = 2
+format-volume-background = ${colors.cyan}
+format-volume-foreground = ${colors.background}
+format-volume-padding = 1
+
+format-muted = <label-muted>
+label-muted =" muted"
+format-muted-background = ${colors.cyan}
+format-muted-foreground = ${colors.background}
+format-muted-padding = 1
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/memory]
+type = internal/memory
+interval = 3
+
+format = <label>
+
+format-prefix = ﬙
+format-prefix-font = 4
+format-prefix-foreground = #ffffff
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+
+label = "  %mb_used% "
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = 
+date-alt = "  %A, %b %d -"
+
+time = "  %I:%M:%S %p"
+time-alt = "%I:%M:%S  "
+
+format-prefix-padding = 2
+format-prefix-font = 2
+format-prefix-foreground = #ffffff
+format-background = ${colors.background}
+format-foreground = ${colors.foreground}
+
+label = %date% %time%
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/powermenu]
+type = custom/menu
+
+expand-right = true
+
+format-spacing = 1
+
+label-open = "  "
+label-open-foreground = ${colors.background}
+label-open-background = ${colors.red}
+label-close = "  Cancel "
+label-close-foreground = ${colors.background}
+label-close-background = ${colors.red}
+label-separator = |
+label-separator-foreground = ${colors.foreground}
+
+menu-0-0 = " "
+menu-0-0-exec = #powermenu.open.1
+menu-0-1 = " "
+menu-0-1-exec = #powermenu.open.2
+menu-0-2 = " "
+menu-0-2-exec = #powermenu.open.3
+menu-0-3 = " "
+menu-0-3-exec = #powermenu.open.4
+
+menu-1-0 = 
+menu-1-0-exec = #powermenu.open.0
+menu-1-1 = 
+menu-1-1-exec = betterlockscreen -l blur 1.0
+
+menu-2-0 = 
+menu-2-0-exec = #powermenu.open.0
+menu-2-1 = 
+menu-2-1-exec = systemctl suspend
+
+menu-3-0 = 
+menu-3-0-exec = #powermenu.open.0
+menu-3-1 = 
+menu-3-1-exec = reboot
+
+menu-4-0 = 
+menu-4-0-exec = #powermenu.open.0
+menu-4-1 = 
+menu-4-1-exec = poweroff
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[settings]
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;pseudo-transparency = false
+
+; vim:ft=dosini
