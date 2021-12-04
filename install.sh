@@ -16,7 +16,6 @@ The setup requirements :
     - dunst
     - flameshot
     - qutebrowser
-
 '
 
 # backup dots in .config
@@ -32,16 +31,8 @@ zip -rq dotsfiles_back \
     ~/.config/qutebrowser \
     ~/.config/rofi \
 
-# copying 
-cp -r .config/bspwm \
-    .config/sxhkd \
-    .config/polybar \
-    .config/picom \
-    .config/nvim \
-    .config/ranger \
-    .config/dunst \
-    .config/kitty \
-    .config/qutebrowser \
-    .config/rofi \
-    ~/.config \
+
+# copying to the dirs with the permissions to overwrite 
+# TODO : search how to force overwrite without interactive mode -i 
+
 
