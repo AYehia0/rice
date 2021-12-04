@@ -26,5 +26,5 @@ credit where credit is due.
    - All credit go to the author of the wallpapers :D
 
 # Screenshots
-
+![](stats/ex1.png)
 
