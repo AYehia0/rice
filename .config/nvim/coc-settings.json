@@ -1,0 +1,6 @@
+{
+  "diagnostic.checkCurrentLine": true,
+  "prettier.semi": false,
+  "prettier.printWidth": 4,
+  "prettier.trailingComma": "es5"
+}

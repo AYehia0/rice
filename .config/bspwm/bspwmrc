@@ -1,21 +1,41 @@
 #! /bin/sh
-
-# setting up the wallpaper
 feh --bg-scale ~/.walls/wall11.jpg
 wmname LG3D
 export _JAVA_AWT_WM_NONREPARENTING=1
  
-# the composite manager
+# language switch
+# setxkbmap -option grp:win_space_toggle us,ar &
+
+#~/.config/polybar/launch.sh
 picom &
 
 # Setting up the notification daemon
 dunst -conf ~/.config/dunst/dunstrc &
 
-# the bar
+# running the clipboard
+parcellite &
+
+# the flameshot
+flameshot &
+
+# the polybar 
+killall polybar
 polybar main &
+# bash ~/.config/polybar/launch.sh --forest
 
 # enable numlock
 numlockx on
+
+setxkbmap -option caps:swapescape
+
+# setting up the keyboard speed
+xset r rate 250 45 
+
+# swapping the caps lock with the esc key
+setxkbmap -option caps:escape
+
+# swapping the alt_left with the super key
+setxkbmap -option altwin:swap_lalt_lwin
 
 xsetroot -cursor_name left_ptr &
 
@@ -35,8 +55,10 @@ bspc config borderless_monocle true
 bspc config split_ratio 0.50
 bspc config gapless_monocle false
 
-bspc rule -a firefox desktop='^2'
-bspc rule -a mpv state=floating
+bspc rule -a Gimp desktop='^8' state=floating follow=on
+bspc rule -a Chromium desktop='^2'
+bspc rule -a mplayer2 state=floating
+bspc rule -a Kupfer.py focus=on
 bspc rule -a Screenkey manage=off
 
 # custom configs

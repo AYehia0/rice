@@ -1,14 +1,12 @@
 # launch terminal
 super + x
     kitty 
-
 # using the urxvt
 super + z
     urxvt 
-
 # program launcher
 super + space
-    /home/none/.config/rofi/launcher.sh
+    /home/none/.config/rofi/launchers/text/launcher.sh
 
 # focus the last node/desktop
 super + {grave,Tab}
@@ -16,21 +14,22 @@ super + {grave,Tab}
 
 # open wifi menu
 super + i
-    /home/none/.bin/rofi-wifi-menu.sh
+    /home/none/.config/rofi/bin/menu_network
 
 # open powermenu
 super + p
-    /home/none/.bin/rofi-powermenu
+    /home/none/.config/rofi/powermenu/powermenu.sh
 
 # launch software
 super + {b,e,t,o,m}
-    {brave ,nemo, telegram-desktop, lollypop, teams}
+    {firefox ,nemo, telegram-desktop, lollypop, teams}
 
 # close and kill
 super + {_,shift + }q
 	bspc node -{c,k}
 
 # set the window state
+#  FIX : switch to the floating window
 super + shift + {w,e}
     bspc node --state {tiled,floating}
 
@@ -43,8 +42,8 @@ super + {_,shift + }{h,j,k,l}
     bspc node -{f,s} {west,south,north,east}
 
 # move forward/backword desktops
-super + shift + {a,s}
     bspc desktop -f {prev,next}
+    super + shift + {a,s}
 
 # focus or send to the given desktop
 super + {_,shift + }{1-8,0}
@@ -70,10 +69,11 @@ super + {a,s,w,d}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 # full screenshot, selection area, full in 5 seconds
+# flameshot {full -p, gui -p} /home/none/Pictures/Screenshots
 Print + {_,shift}
-    flameshot {full -p, gui -p} /home/none/Pictures/Screenshots
+  flameshot {full -p /home/none/Pictures/Screenshots , gui} 
 
- quit/restart bspwm
+# quit/restart bspwm
 super + {F4, F5}
 	bspc {quit,wm -r}
 
@@ -91,7 +91,7 @@ XF86AudioMute
 
 # brightness keys
 XF86MonBrightness{Up,Down}
-	light -{A,U} 10
+	sudo light -{A,U} 10
 
 # next, previous, play-pause toggle
 XF86Audio{Next,Prev,Play}
@@ -100,3 +100,7 @@ XF86Audio{Next,Prev,Play}
 # screen locking
 super + F1
     betterlockscreen -l
+
+# language switching
+super + shift + i
+	/home/none/.bin/switch_lang.sh

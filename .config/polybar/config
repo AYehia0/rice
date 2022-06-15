@@ -50,12 +50,15 @@ font-0 = "Iosevka Nerd Font:style=Bold:size=11;3"
 font-1 = "Mochiy Pop One:pixelsize=12;3"
 
 modules-left = bspwm
-modules-center = windowtitle
-modules-right = battery backlight wifi memory volume date powermenu
+modules-center = 
+modules-right = timer sep prayer battery bright wifi eth memory volume date
 
 cursor-click = pointer
 cursor-scroll = pointer
 
+tray-position = right 
+tray-padding = 8
+tray-background = ${colors.alt.background}
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/bspwm]
@@ -98,7 +101,7 @@ label-separator =
 
 [module/backlight]
 type = internal/backlight
-card = amdgpu_bl0
+card = amdgpu_bl1
 format = <ramp> <label>
 label = %percentage%%
 
@@ -143,6 +146,19 @@ ramp-9 = 
 ramp-font = 2
 ramp-foreground = ${color.red}
 
+[module/wlan]
+type = internal/network
+interface = wlp4s0
+interval = 3.0
+format-connected =  <label-connected>
+format-connected-padding = 1
+format-disconnected = "󰤣 "
+format-disconnected-background = ${color.red}
+format-disconnected-foreground = ${color.green} 
+label-connected = "󰤧 " 
+format-connected-foreground = ${color.green} 
+format-connected-background = ${color.red}
+
 [module/wifi]
 type = internal/network
 interface = wlp4s0
@@ -174,9 +190,9 @@ ramp-signal-background = ${colors.background}
 ramp-signal-font = 3
 format-padding = 2
 
-[module/network]
+[module/eth]
 type = internal/network
-interface = wlp4s0
+interface = enp3s0
 interval = 1.0
 format-connected = <label-connected>
 label-connected = " %downspeed%  %upspeed%"
@@ -185,7 +201,7 @@ label-connected-underline = ${colors.background}
 label-connected-overline = ${colors.background}
 label-connected-background = ${colors.green}
 label-connected-padding = 2
-label-disconnected = disconnected
+label-disconnected =
 
 [module/cpu]
 type = internal/cpu
@@ -238,6 +254,39 @@ animation-charging-font = 2
 animation-charging-foreground = ${colors.green}
 animation-charging-framerate = 750
 
+[module/batter]
+type = internal/battery
+battery = BAT1
+adapter = ADP1
+
+full-at = 98
+
+format-charging = <label-charging>
+label-charging = 󱊢+%percentage%%
+
+format-charging-padding = 1
+format-charging-foreground = ${colors.red}
+format-charging-background = ${colors.mine}
+
+format-discharging = <label-discharging>
+label-discharging = 󱊢%percentage%%
+
+format-discharging-foreground = ${colors.green}
+format-discharging-background = ${colors.mine}
+format-discharging-padding = 1
+
+format-full-prefix = "󱊣"
+format-full-background = ${colors.mine}
+format-full-padding = 1
+format-full-foreground = ${colors.green}
+format-background = ${colors.mine}  
+
+ramp-capacity-0 = "󰂎" 
+ramp-capacity-1 = "󰂎" 
+ramp-capacity-2 = "󱊡" 
+ramp-capacity-3 = "󱊢" 
+ramp-capacity-4 = "󱊣"
+
 [module/windowtitle]
 type = internal/xwindow
 format = <label>
@@ -274,6 +323,18 @@ format-muted-foreground = ${colors.background}
 format-muted-padding = 1
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[module/spotify]
+type = custom/script
+tail = true
+format-prefix = "  "
+format = <label>
+format-background = ${colors.pink}
+format-foreground = ${colors.background}
+format-padding = 4
+exec = ~/.config/polybar/scripts/scroll_spotify_status.sh
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 [module/memory]
 type = internal/memory
@@ -366,4 +427,44 @@ screenchange-reload = true
 ;compositing-border = over
 ;pseudo-transparency = false
 
+[module/timer]
+type = custom/script
+
+exec = /home/none/.polybar-timer.sh tail 'TIMER' 5
+tail = true
+
+click-left = /home/none/.polybar-timer.sh new 25 'Pomo session' 'Paused' 'notify-send "Session finished"' ; /home/none/.polybar-timer.sh update %pid%
+click-middle = /home/none/.polybar-timer.sh cancel ; /home/none/.polybar-timer.sh update %pid%
+click-right = /home/none/.polybar-timer.sh togglepause ; /home/none/.polybar-timer.sh update %pid%
+scroll-up = /home/none/.polybar-timer.sh increase 60 || /home/none/.polybar-timer.sh new 1 'TIMER' 'PAUSED' 'notify-send -u critical "Timer expired."' ; /home/none/.polybar-timer.sh update %pid%
+scroll-down = /home/none/.polybar-timer.sh increase -60 ; /home/none/.polybar-timer.sh update %pid%
+
+label-separator = " | "
+label-empty-foreground = ${colors.foreground-alt }
+
+[module/prayer]
+type = custom/script
+exec = /home/none/Things/github/My-Personal-Tweaks/_prayer/prayer_back.sh 
+tail = true
+interval = 60
+
+[module/bright]
+type = custom/script
+exec = /home/none/.bin/brightness.sh
+interval = 0.1
+label = %output%%
+format-prefix = " " 
+format-prefix-foreground = ${colors.red}
+
+[global/wm]
+;margin-top = 5
+;margin-bottom = 5
+
 ; vim:ft=dosini
+
+[module/sep]
+type = custom/text
+content = |
+
+content-background = ${color.background}
+content-foreground = ${color.background}
