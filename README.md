@@ -1,30 +1,25 @@
-# rice
-My juicy rice aka dotfiles.
+# Rice
 
-This is my daily driver linux setup using ```bspwm```:
+This is my daily driver linux setup using ```bspwm```
 
-   - ```sxhkd``` (for keybindings)
-   - ```polybar``` (the beautiful bar)
-   - ```picom``` (lightweight compositor)
-   - ```kitty``` (my main terminal emulator)
-   - ```nvim``` (you know :D)
-   - ```urxvt``` (second terminal with cool features + w3m support)
-   - ```w3m``` (for viewing imgs)
-   - ```ranger``` (cli file manager)
-   - ```rofi``` (dmenu replacement, great app launcher)
-   - ```dunst``` (notification daemon)
-   - ```flameshot``` (great for taking screenshots)
-   - ```qutebrowser``` (keyboard-focused browser)
-   - maybe more idk
+| Program | usage |
+| ------- | ----- | 
+| `sxhkd`| for keybindings |
+| `polybar`| the awesome bar |
+| `picom`| lightweight compositor |
+| `kitty` | my main terminal (doesn't support ar) |
+| `neovim`| best of the cake |
+| `tmux`| workflow management |
+| `rofi`| dmenu replacement |
+| `ranger`| nice file manager in python |
+| `dunst`| notification daemon |
+| `flameshot`| taking screenshots |
 
-# Credits
+# Updates
 
-credit where credit is due.
-
-   - Unixporn
-   - Other devs dotfiles :D
-   - All credit go to the author of the wallpapers :D
+- `kitty` : previewing images now work with the help of `ueberzug`
+- `flameshot` : can't copy img after area selection is fixed now!
+- System wide yanking works : `parcellite`
 
 # Screenshots
 ![](stats/ex1.png)
-

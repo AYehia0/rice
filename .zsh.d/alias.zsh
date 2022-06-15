@@ -13,7 +13,7 @@ alias gic="git commit -m "
 alias gil="git log --pretty=format:'%H, %ar : %s'"
 
 # Navigating
-alias neo="neofetch"
+alias neo="fastfetch"
 alias lm="ls --human-readable --size -1 -S --classify"
 alias la="ls -t -1"
 alias mkd="mkdir -pv"
@@ -23,6 +23,8 @@ alias ls="ls --color=auto"
 alias v="nvim"
 alias nn="nano" # i don't use nano anymore
 
+# restart the router
+alias rr="cd /home/none/Things/github/My-Personal-Tweaks/ && ./restart_router.sh"
 
 # zoom connection
 alias zz="python /home/none/Things/github/zoom-auto-join/main.py"
@@ -58,6 +60,17 @@ alias td="v ~/todo.lst"
 # running the server : Testing only
 alias run="npm run dev"
 
+# mounting 
+alias md="udisksctl mount -b "
+
+# WiFis 
+alias wih='sudo nmcli dev wifi connect "AHMED@HANY" password Ahmed@Saydalla@2000@Hader#3lom hidden yes'
+
+# tmux 
+alias tks="tmux kill-session -t"
+alias tns="tmux new -s"
+alias dev="tmux new -s dev"
+alias ide="/home/none/.bin/tmux-dev.sh"
 
 #Functions 
 int() {
@@ -95,4 +108,11 @@ gitpro() {
     c=/home/none/Things/github/$1
     echo $c
     mkd $c && git init $c && cd $c 
+}
+
+push() {
+  str="github_notify.js"
+    if [ $PWD = "/home/none/Things/github/Gimme" ]; then
+      git push origin master && node "$PWD/testing/$str"
+    fi;
 }
