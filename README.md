@@ -20,6 +20,9 @@ This is my daily driver linux setup using ```bspwm```
 - `kitty` : previewing images now work with the help of `ueberzug`
 - `flameshot` : can't copy img after area selection is fixed now!
 - System wide yanking works : `parcellite`
+- Fully functional mpd
+- Time for the Prayer in polybar : [Here](https://github.com/AYehia0/My-Personal-Tweaks/tree/master/_prayer)
+- Theme switcher + some configs, thanks to @gh0stzk
 
 # Screenshots
 ![](stats/ex1.png)
