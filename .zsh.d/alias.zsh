@@ -40,6 +40,7 @@ alias myip="curl ipinfo.io/ip"
 #alias yt="youtube-dl -f bestvideo+bestaudio"
 # The new youtube-dl alt : yt-dlp
 alias yt="yt-dlp --yes-playlist -f bestvideo+bestaudio --no-video-multistreams"
+alias yt-audio="yt-dlp --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality 160K --output '%(title)s-%(playlist_index)s.%(ext)s' --yes-playlist"
 
 # wifi monitoring
 alias airmon="sudo airmon-ng start wlp4s0"
