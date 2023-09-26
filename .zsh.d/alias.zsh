@@ -73,6 +73,10 @@ alias tns="tmux new -s"
 alias dev="tmux new -s dev"
 alias ide="/home/none/.bin/tmux-dev.sh"
 
+# sharing
+# ix < file.png
+alias ix='curl -F "file=@-" -F "secret=" https://envs.sh'
+
 #Functions 
 int() {
     ifconfig  -s | awk '{ print $1 }' | tail -1 
